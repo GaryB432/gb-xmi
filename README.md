@@ -14,12 +14,11 @@ This library is for generating [XML METADATA INTERCHANGE document](https://www.o
 ```ts
 import * as fs from 'fs';
 import * as path from 'path';
-import * as builder from 'xmlbuilder';
 
-import { Document } from './document';
-import { XmiClass } from './elements/class';
-import { XmiClassifier } from './elements/classifier';
-import { XmiComponent } from './elements/component';
+import { Document } from 'gb-xmi/lib/document';
+import { XmiClass } from 'gb-xmi/lib/elements/class';
+import { XmiClassifier } from 'gb-xmi/lib/elements/classifier';
+import { XmiComponent } from 'gb-xmi/lib/elements/component';
 
 async function main() {
   const doc = new Document('Fun Document');
@@ -63,5 +62,4 @@ async function main() {
 }
 main();
 
-// PS: C:\gb-xmi>node node_modules/typescript/bin/tsc;node .\lib\write-meta.js;cat .\__tests__\meta.xmi
 ```
