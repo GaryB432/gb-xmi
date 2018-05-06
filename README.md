@@ -60,6 +60,7 @@ async function main() {
 
   await doc.writeFile('meta.xmi');
 }
+
 main();
 
 ```
