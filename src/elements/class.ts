@@ -7,9 +7,13 @@ export class XmiClass extends XmiClassifier {
   public xmiType(): string {
     return 'uml:Class';
   }
+  constructor(name: string, public isAbstract = false) {
+    super(name);
+  }
   public xmi(): AttrubuteMap {
-    const atts: AttrubuteMap = super.xmi();
-    atts['isAbstract'] = 'false';
-    return atts;
+    return {
+      ...super.xmi(),
+      ...{ isAbstract: this.isAbstract.toString() },
+    };
   }
 }

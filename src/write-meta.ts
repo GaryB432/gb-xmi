@@ -19,10 +19,12 @@ async function main() {
       {
         generals: ['Classifier'],
         name: 'Class',
+        isAbstract: true,
       },
       {
         generals: ['NamedElement'],
         name: 'Classifier',
+        isAbstract: true,
       },
       {
         generals: ['Class'],
@@ -35,6 +37,7 @@ async function main() {
       {
         generals: ['NamedElement'],
         name: 'Feature',
+        isAbstract: true,
       },
       {
         generals: ['Classifier'],
@@ -43,6 +46,7 @@ async function main() {
       {
         generals: [],
         name: 'NamedElement',
+        isAbstract: true,
       },
       {
         generals: ['Feature'],
@@ -68,7 +72,10 @@ async function main() {
   };
 
   info.classifiers
-    .map(t => ({ comp: new XmiComponent(t.name), fier: new XmiClass(t.name) }))
+    .map(t => ({
+      comp: new XmiComponent(t.name),
+      fier: new XmiClass(t.name, t.isAbstract),
+    }))
     .forEach(c => {
       kvp.set(c.comp.name, c.fier);
       classifierPackage.addClassifier(c.fier);

@@ -18,10 +18,10 @@
         <packagedElement xmi:type="uml:Component" name="Usage" xmi:id="_gb-xmi.25" visibility="public" isAbstract="false"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" name="Classifiers" xmi:id="_gb-xmi.2" visibility="public">
-        <packagedElement xmi:type="uml:Class" name="Class" xmi:id="_gb-xmi.4" visibility="package" isAbstract="false">
+        <packagedElement xmi:type="uml:Class" name="Class" xmi:id="_gb-xmi.4" visibility="package" isAbstract="true">
           <generalization general="_gb-xmi.6" xmi:id="_gb-xmi.4__gb-xmi.6" xmi:type="uml:Generalization"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" name="Classifier" xmi:id="_gb-xmi.6" visibility="package" isAbstract="false">
+        <packagedElement xmi:type="uml:Class" name="Classifier" xmi:id="_gb-xmi.6" visibility="package" isAbstract="true">
           <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.6__gb-xmi.16" xmi:type="uml:Generalization"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" name="Component" xmi:id="_gb-xmi.8" visibility="package" isAbstract="false">
@@ -30,13 +30,13 @@
         <packagedElement xmi:type="uml:Class" name="Dependency" xmi:id="_gb-xmi.10" visibility="package" isAbstract="false">
           <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.10__gb-xmi.16" xmi:type="uml:Generalization"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" name="Feature" xmi:id="_gb-xmi.12" visibility="package" isAbstract="false">
+        <packagedElement xmi:type="uml:Class" name="Feature" xmi:id="_gb-xmi.12" visibility="package" isAbstract="true">
           <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.12__gb-xmi.16" xmi:type="uml:Generalization"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" name="Interface" xmi:id="_gb-xmi.14" visibility="package" isAbstract="false">
           <generalization general="_gb-xmi.6" xmi:id="_gb-xmi.14__gb-xmi.6" xmi:type="uml:Generalization"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" name="NamedElement" xmi:id="_gb-xmi.16" visibility="package" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Class" name="NamedElement" xmi:id="_gb-xmi.16" visibility="package" isAbstract="true"/>
         <packagedElement xmi:type="uml:Class" name="Operation" xmi:id="_gb-xmi.18" visibility="package" isAbstract="false">
           <generalization general="_gb-xmi.12" xmi:id="_gb-xmi.18__gb-xmi.12" xmi:type="uml:Generalization"/>
         </packagedElement>

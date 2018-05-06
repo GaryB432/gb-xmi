@@ -1,9 +1,9 @@
 import { XmiClass } from '../src/elements/class';
 
 it('Should get xmiType', () => {
-  var sut = new XmiClass('subject');
+  var sut = new XmiClass('subject', true);
   expect(sut.xmi()).toEqual({
-    isAbstract: 'false',
+    isAbstract: 'true',
     name: 'subject',
     visibility: 'package',
     'xmi:id': '_gb-xmi.0',
