@@ -1,6 +1,6 @@
 {
   "name": "gb-xmi",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "create XMI documents with JavaScript",
   "license": "MIT",
   "repository": {
