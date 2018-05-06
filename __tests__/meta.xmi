@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<xmi:XMI xmlns:uml="http://www.omg.org/spec/UML/20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:mofext="http://www.omg.org/spec/MOF/20110701">
+  <xmi:Documentation exporter="GB-XMI" exporterVersion="1.0"/>
+  <uml:Model name="GB_Model" visibility="public" xmi:id="M0" xmi:type="uml:Model">
+    <packagedElement xmi:type="uml:Package" name="Fun Document" xmi:id="_gb-xmi.0" visibility="public">
+      <packagedElement xmi:type="uml:Package" name="Components" xmi:id="_gb-xmi.1" visibility="public">
+        <packagedElement xmi:type="uml:Component" name="Class" xmi:id="_gb-xmi.3" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Classifier" xmi:id="_gb-xmi.5" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Component" xmi:id="_gb-xmi.7" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Dependency" xmi:id="_gb-xmi.9" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Feature" xmi:id="_gb-xmi.11" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Interface" xmi:id="_gb-xmi.13" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="NamedElement" xmi:id="_gb-xmi.15" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Operation" xmi:id="_gb-xmi.17" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Package" xmi:id="_gb-xmi.19" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Parameter" xmi:id="_gb-xmi.21" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Property" xmi:id="_gb-xmi.23" visibility="public" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Component" name="Usage" xmi:id="_gb-xmi.25" visibility="public" isAbstract="false"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" name="Classifiers" xmi:id="_gb-xmi.2" visibility="public">
+        <packagedElement xmi:type="uml:Class" name="Class" xmi:id="_gb-xmi.4" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.6" xmi:id="_gb-xmi.4__gb-xmi.6" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Classifier" xmi:id="_gb-xmi.6" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.6__gb-xmi.16" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Component" xmi:id="_gb-xmi.8" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.4" xmi:id="_gb-xmi.8__gb-xmi.4" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Dependency" xmi:id="_gb-xmi.10" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.10__gb-xmi.16" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Feature" xmi:id="_gb-xmi.12" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.12__gb-xmi.16" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Interface" xmi:id="_gb-xmi.14" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.6" xmi:id="_gb-xmi.14__gb-xmi.6" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="NamedElement" xmi:id="_gb-xmi.16" visibility="package" isAbstract="false"/>
+        <packagedElement xmi:type="uml:Class" name="Operation" xmi:id="_gb-xmi.18" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.12" xmi:id="_gb-xmi.18__gb-xmi.12" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Package" xmi:id="_gb-xmi.20" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.20__gb-xmi.16" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Parameter" xmi:id="_gb-xmi.22" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.16" xmi:id="_gb-xmi.22__gb-xmi.16" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Property" xmi:id="_gb-xmi.24" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.12" xmi:id="_gb-xmi.24__gb-xmi.12" xmi:type="uml:Generalization"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" name="Usage" xmi:id="_gb-xmi.26" visibility="package" isAbstract="false">
+          <generalization general="_gb-xmi.10" xmi:id="_gb-xmi.26__gb-xmi.10" xmi:type="uml:Generalization"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>
