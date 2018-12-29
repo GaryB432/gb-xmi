@@ -5,7 +5,7 @@ import { XmiDependency } from './dependency';
 import { XmiNamedElement } from './namedelement';
 import { XmiParameter } from './parameter';
 
-export interface IPackageAttributes {}
+export interface IPackageAttributes { }
 export class XmiPackage extends XmiNamedElement {
   private classifiers: XmiClassifier[] = [];
   private packages: XmiPackage[] = [];
@@ -40,11 +40,13 @@ export class XmiPackage extends XmiNamedElement {
     classifs.forEach(classifier => {
       const e = elem.ele('packagedElement', classifier.xmi());
       classifier.generals.forEach(g => {
-        e.ele('generalization', {
-          general: g.xmiId,
-          'xmi:id': `${classifier.xmiId}_${g.xmiId}`,
-          'xmi:type': 'uml:Generalization',
-        });
+        if (!!g) {
+          e.ele('generalization', {
+            general: g.xmiId,
+            'xmi:id': `${classifier.xmiId}_${g.xmiId}`,
+            'xmi:type': 'uml:Generalization',
+          });
+        }
       });
       classifier.properties.forEach(cp => {
         cp.appendXmi(e, this.cmap);
