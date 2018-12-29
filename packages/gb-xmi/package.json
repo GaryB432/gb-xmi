@@ -1,0 +1,24 @@
+{
+  "name": "gb-xmi",
+  "version": "1.2.0",
+  "description": "> TODO: description",
+  "author": "Gary Bortosky <garybort@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc --pretty",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "xmlbuilder": "^10.1.1"
+  }
+}
