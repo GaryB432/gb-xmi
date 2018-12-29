@@ -6,10 +6,7 @@ export class XmiParameter extends XmiNamedElement {
   constructor(public name: string, public typeName: string) {
     super(name);
   }
-  public appendXmi(
-    opElement: BuilderElement,
-    classifiers: ClassifierMap
-  ): BuilderElement {
+  public appendXmi(opElement: BuilderElement, classifiers: ClassifierMap): BuilderElement {
     const atts = this.xmi();
 
     const ctype = classifiers[this.typeName];

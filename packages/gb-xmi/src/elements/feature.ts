@@ -11,7 +11,7 @@ export abstract class XmiFeature extends XmiNamedElement {
   public xmi(): AttrubuteMap {
     const atts: AttrubuteMap = {};
     /* <ownedAttribute
-      */
+     */
     // atts["isDerived"] = "false";
     // atts["isOrdered"] = "false";
     // atts["isUnique"] = "true";
@@ -25,10 +25,7 @@ export abstract class XmiFeature extends XmiNamedElement {
     atts['visibility'] = 'package';
     return atts;
   }
-  public appendXmi(
-    classifierElement: BuilderElement,
-    classifiers: ClassifierMap
-  ): BuilderElement {
+  public appendXmi(classifierElement: BuilderElement, classifiers: ClassifierMap): BuilderElement {
     const atts = this.xmi();
 
     // if (this.typeName !== "void") {

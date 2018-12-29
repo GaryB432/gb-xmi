@@ -16,10 +16,7 @@ export class XmiDependency extends XmiNamedElement {
   public operations: XmiOperation[] = [];
   public properties: XmiProperty[] = [];
   public readonly attributes: IDependencyAttributes;
-  constructor(
-    public readonly supplier: XmiNamedElement,
-    public readonly client: XmiNamedElement
-  ) {
+  constructor(public readonly supplier: XmiNamedElement, public readonly client: XmiNamedElement) {
     super(supplier.name.concat(client.name));
     this.attributes = {
       client: this.client.xmiId,
