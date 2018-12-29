@@ -12,15 +12,10 @@ This library is for generating [XML METADATA INTERCHANGE document](https://www.o
 ## Using
 
 ```ts
-import * as fs from 'fs';
-import * as path from 'path';
 
-import { Document } from 'gb-xmi/lib/document';
-import { XmiClass } from 'gb-xmi/lib/elements/class';
-import { XmiClassifier } from 'gb-xmi/lib/elements/classifier';
-import { XmiComponent } from 'gb-xmi/lib/elements/component';
+import { Document, XmiClassifier, XmiComponent, XmiClass } from 'gb-xmi';
 
-async function main() {
+async function main(): Promise<string> {
   const doc = new Document('Fun Document');
   const componentPackage = doc.addPackage('Components');
   const classifierPackage = doc.addPackage('Classifiers');
@@ -58,9 +53,9 @@ async function main() {
     });
   });
 
-  await doc.writeFile('meta.xmi');
+  return await doc.end();
 }
 
-main();
+console.log(await main());
 
 ```

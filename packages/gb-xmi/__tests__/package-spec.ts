@@ -1,6 +1,5 @@
 import { XmiPackage } from '../src/elements/package';
 
-
 import { Document } from '../src/document';
 import { XmiClass } from '../src/elements/class';
 import { XmiClassifier } from '../src/elements/classifier';
@@ -44,7 +43,7 @@ async function main(): Promise<string> {
     });
   });
 
-  return  await doc.end();
+  return await doc.end();
 }
 
 it('Should get xmiType', () => {
@@ -56,4 +55,4 @@ it('Should get xmiType', () => {
 it('Should not blow', async () => {
   const actual = await main();
   expect(actual).toContain('packagedElement');
-})
+});

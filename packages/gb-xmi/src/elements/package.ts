@@ -5,7 +5,7 @@ import { XmiDependency } from './dependency';
 import { XmiNamedElement } from './namedelement';
 import { XmiParameter } from './parameter';
 
-export interface IPackageAttributes { }
+export interface IPackageAttributes {}
 export class XmiPackage extends XmiNamedElement {
   private classifiers: XmiClassifier[] = [];
   private packages: XmiPackage[] = [];
