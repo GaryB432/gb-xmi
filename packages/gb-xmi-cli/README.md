@@ -19,7 +19,7 @@ $ npm install -g gb-xmi-cli
 $ gb-xmi-cli COMMAND
 running command...
 $ gb-xmi-cli (-v|--version|version)
-gb-xmi-cli/2.0.0-alpha.0 win32-x64 node-v9.3.0
+gb-xmi-cli/2.0.1-alpha.0 win32-x64 node-v9.3.0
 $ gb-xmi-cli --help [COMMAND]
 USAGE
   $ gb-xmi-cli COMMAND
@@ -50,7 +50,7 @@ EXAMPLE
   hello world from ./src/hello.ts!
 ```
 
-_See code: [src\commands\hello.ts](https://github.com/GaryB432/gb-xmi/blob/v2.0.0-alpha.0/src\commands\hello.ts)_
+_See code: [src\commands\hello.ts](https://github.com/GaryB432/gb-xmi/blob/v2.0.1-alpha.0/src\commands\hello.ts)_
 
 ## `gb-xmi-cli help [COMMAND]`
 
@@ -83,5 +83,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src\commands\meta.ts](https://github.com/GaryB432/gb-xmi/blob/v2.0.0-alpha.0/src\commands\meta.ts)_
+_See code: [src\commands\meta.ts](https://github.com/GaryB432/gb-xmi/blob/v2.0.1-alpha.0/src\commands\meta.ts)_
 <!-- commandsstop -->
