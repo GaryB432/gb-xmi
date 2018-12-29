@@ -1,26 +1,24 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "module": "commonjs",
-    "moduleResolution": "node",
+    "target": "es5",
     "lib": [
-      "esnext"
+      "es6",
+      "dom"
     ],
-    "target": "es2015",
+    "sourceMap": true,
+    "allowJs": false,
+    "moduleResolution": "node",
     "strict": true,
-    "outDir": "./lib",
-    "preserveConstEnums": true,
-    "removeComments": true,
-    "inlineSourceMap": true,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "declaration": true,
+    "downlevelIteration": true,
+    "typeRoots": ["./node_modules/@types"]
   },
-  "include": [
-    "src/**/*"
-  ],
   "exclude": [
+    "**/*.test.ts",
+    "**/test.config.ts",
     "node_modules",
-    "**/*-spec.ts"
+    "**/build/*",
+    "**/*.d.ts"
   ]
 }
