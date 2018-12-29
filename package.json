@@ -1,64 +1,30 @@
 {
-  "name": "gb-xmi",
-  "version": "1.1.0",
-  "description": "create XMI documents with JavaScript",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/GaryB432/gb-xmi.git"
-  },
-  "keywords": [
-    "xmi"
-  ],
-  "files": [
-    "lib"
-  ],
-  "scripts": {
-    "clean": "rimraf lib && rimraf coverage",
-    "format": "prettier --write \"{src,__tests__}/**/*.ts\" --single-quote --trailing-comma es5",
-    "lint": "tslint --force --format verbose \"src/**/*.ts\"",
-    "prepublishOnly": "npm run build",
-    "prebuild": "npm run clean && npm run format && npm run lint && echo Using TypeScript && tsc --version",
-    "build": "tsc --pretty",
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "watch": "npm run build -- --watch",
-    "watch:test": "jest --watch"
-  },
-  "bugs": {
-    "url": "https://github.com/GaryB432/gb-xmi/issues"
-  },
-  "homepage": "https://github.com/GaryB432/gb-xmi",
-  "dependencies": {
-    "xmlbuilder": "^10.0.0"
-  },
+  "name": "root",
+  "private": true,
   "devDependencies": {
-    "@types/jest": "^22.2.3",
-    "@types/node": "^8.10.12",
-    "@types/xmlbuilder": "0.0.32",
-    "coveralls": "^2.13.3",
-    "jest": "^22.4.3",
-    "prettier": "^1.12.1",
-    "rimraf": "^2.6.2",
-    "ts-jest": "^22.4.4",
-    "ts-node": "^3.3.0",
-    "tslint": "^5.10.0",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/xml2js": "^0.4.3",
+    "@types/xmlbuilder": "0.0.34",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.3",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.0",
     "tslint-config-gb": "^1.1.0",
-    "tslint-config-prettier": "^1.12.0",
-    "typescript": "^2.8.3"
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
   },
-  "engines": {
-    "node": ">=6.0.0"
+  "scripts": {
+    "formatxx": "prettier --write ",
+    "format": "prettier --write \"**/*.ts\"  \"!**/lib/**\"",
+    "test": "jest"
   },
-  "jest": {
-    "transform": {
-      ".(ts)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "testEnvironment": "node"
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "dependencies": {
+    "lerna": "^3.8.0"
   }
 }
