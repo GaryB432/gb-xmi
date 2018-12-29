@@ -20,5 +20,8 @@
   },
   "dependencies": {
     "xmlbuilder": "^10.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.2"
   }
 }
