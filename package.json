@@ -25,6 +25,7 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "lerna": "^3.8.0"
+    "lerna": "^3.8.0",
+    "xmlbuilder": "^10.1.1"
   }
 }
