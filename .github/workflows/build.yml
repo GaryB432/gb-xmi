@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+      - release/*
+  pull_request:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: lint and build
+        run: |
+          npm install
+          npx nx workspace-lint
+          npx nx format:check
+          npx nx run-many --target lint
+          npx nx run-many --target test
+          npx nx build cli
