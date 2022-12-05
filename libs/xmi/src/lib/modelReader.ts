@@ -199,8 +199,9 @@ export abstract class ModelReader {
                     uparam.isOrdered = false;
                     uparam.isStream = false;
                     uparam.isUnique = false;
-
-                    uop.ownedParameter.push(uparam);
+                    if (uop.ownedParameter) {
+                      uop.ownedParameter.push(uparam);
+                    }
                   }
                 }
                 ucls.ownedOperation.push(uop);
