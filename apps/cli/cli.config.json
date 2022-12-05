@@ -1,0 +1,31 @@
+{
+  "$schema": "../../node_modules/@gb-nx/cli/schemas/config-schema.json",
+  "version": 2,
+  "program": { "name": "cli", "version": "0.0.1-0" },
+  "global": {
+    "options": {
+      "dryRun": {
+        "alias": "-d",
+        "description": "Do not write changes to disk",
+        "type": "boolean"
+      },
+      "config": {
+        "description": "Provide path to config file",
+        "type": "string",
+        "default": "cli.config.json"
+      },
+      "verbose": { "description": "Log extra information", "type": "boolean" }
+    }
+  },
+  "commands": {
+    "show-ts": {
+      "description": "Read a TypeScript class",
+      "parameters": {
+        "file": { "type": "string", "description": "file containing TypeScript source to process" }
+      },
+      "options": {
+        "outpath": { "type": "string", "description": "Path for output" }
+      }
+    }
+  }
+}
