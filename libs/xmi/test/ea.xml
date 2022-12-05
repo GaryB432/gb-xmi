@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1">
+	<xmi:Documentation exporter="gb-xmi" exporterVersion="1.0"/>
+	<uml:Model xmi:type="uml:Model" name="My Model" visibility="public">
+		<packagedElement xmi:type="uml:Package" xmi:id="_gb-xmi.12" name="TS-FUN" visibility="public">
+			<packagedElement xmi:type="uml:Class" xmi:id="_gb-xmi.0" name="Address" visibility="package">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="_gb-xmi.3" name="city" visibility="package" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="_gb-xmi.99.string"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="_gb-xmi.1" name="number" visibility="package" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="_gb-xmi.99.string"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="_gb-xmi.4" name="state" visibility="package" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="_gb-xmi.99.string"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="_gb-xmi.2" name="street" visibility="package" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="_gb-xmi.99.string"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="_gb-xmi.5" name="zip" visibility="package" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="_gb-xmi.99.string"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="_gb-xmi.6" name="Customer" visibility="package">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="_gb-xmi.8" name="address" visibility="package" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="_gb-xmi.0"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="_gb-xmi.7" name="name" visibility="package" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="_gb-xmi.99.string"/>
+				</ownedAttribute>
+				<ownedOperation xmi:id="_gb-xmi.9" name="Move" visibility="package" type="_gb-xmi.99.void">
+					<ownedParameter xmi:id="_gb-xmi.10" name="newAddress" type="_gb-xmi.0" direction="inout" isStream="false" isException="false" isOrdered="0" isUnique="1"/>
+					<ownedParameter xmi:id="_gb-xmi.11" name="validated" type="_gb-xmi.99.boolean" direction="inout" isStream="false" isException="false" isOrdered="0" isUnique="1"/>
+					<ownedParameter xmi:id="_gb-xmi.13" name="return" type="_gb-xmi.99.void" direction="return" isStream="false" isException="false" isOrdered="0" isUnique="1"/>
+					<ownedParameter xmi:id="EAID_RT000000_8E03_4329_B4C0_B08CD67D916D" name="return" type="_gb-xmi.99.void" direction="return"/>
+				</ownedOperation>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Package" xmi:id="_gb-xmi.99.types" name="TSTypes" visibility="public">
+				<packagedElement xmi:type="uml:DataType" xmi:id="_gb-xmi.99.boolean" name="boolean" visibility="public"/>
+				<packagedElement xmi:type="uml:DataType" xmi:id="_gb-xmi.99.number" name="number" visibility="public"/>
+				<packagedElement xmi:type="uml:DataType" xmi:id="_gb-xmi.99.string" name="string" visibility="public"/>
+				<packagedElement xmi:type="uml:DataType" xmi:id="_gb-xmi.99.void" name="void" visibility="public"/>
+			</packagedElement>
+		</packagedElement>
+	</uml:Model>
+</xmi:XMI>
