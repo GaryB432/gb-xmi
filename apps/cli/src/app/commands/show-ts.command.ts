@@ -1,12 +1,13 @@
 /* This is a generated file. Make changes to cli.config.json and run "nx sync cli" */
 /* NO IT IS NOT */
 
+import { printMermaid } from '@gb-xmi/reporters';
 import type {
   IClass,
   IModel,
   IOperation,
   IParamter,
-  IProperty
+  IProperty,
 } from '@gb-xmi/xmi';
 import * as chalk from 'chalk';
 import * as ts from 'typescript';
@@ -56,15 +57,15 @@ export async function showTsCommand({
   if (opts.dryRun) {
     console.log(chalk.yellowBright('Dry Run. Nothing written.'));
   } else {
-    // const content = ts.sys.readFile(file);
-    const content = `export class Cat {
-      whiskers: number = 0;
-      private color: string | undefined;
-      meow(duration: number, volume: number): void {
-        console.log('tbd');
-      }
-    }
-    `;
+    const content = ts.sys.readFile(file);
+    // const content = `export class Cat {
+    //   whiskers: number = 0;
+    //   private color: string | undefined;
+    //   meow(duration: number, volume: number): void {
+    //     console.log('tbd');
+    //   }
+    // }
+    // `;
     if (!content) {
       console.log(file);
       throw new Error('file not found');
@@ -93,7 +94,7 @@ export async function showTsCommand({
           visibility: 'public',
         };
         const className = cn.name.escapedText as string;
-        console.log(className);
+        // console.log(className);
         for (const mem of cn.members) {
           const memberName = mem.name as ts.Identifier;
           switch (mem.kind) {
@@ -153,8 +154,8 @@ export async function showTsCommand({
         model.packages.main.classes[className] = classDefinition;
       }
     }
-    console.log(JSON.stringify(model, undefined, 2));
-    console.log(chalk.bgGreenBright.whiteBright('showTsCommand works'));
+    const mermaid = printMermaid(model.packages.main);
+    console.log(mermaid.join('\n'));
   }
 }
 

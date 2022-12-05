@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@gb-xmi/reporters": ["libs/reporters/src/index.ts"],
       "@gb-xmi/uml": ["libs/uml/src/index.ts"],
       "@gb-xmi/xmi": ["libs/xmi/src/index.ts"]
     }
