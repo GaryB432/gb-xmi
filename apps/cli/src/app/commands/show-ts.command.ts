@@ -23,7 +23,9 @@ class TestCompilerHost implements ts.CompilerHost {
   getNewLine = () => '\n';
   readFile = () => null;
   useCaseSensitiveFileNames = () => true;
-  writeFile = () => {};
+  writeFile = () => {
+    throw new Error('not implemented');
+  };
   getSourceFile(filename: string): ts.SourceFile {
     return ts.createSourceFile(filename, this.code, ts.ScriptTarget.ES5, true);
   }
@@ -156,13 +158,5 @@ export async function showTsCommand({
     }
     const mermaid = printMermaid(model.packages.main);
     console.log(mermaid.join('\n'));
-  }
-}
-
-export class Cat {
-  whiskers: number = 0;
-  private color: string | undefined;
-  meow(duration: number, volume: number): void {
-    console.log('tbd');
   }
 }
