@@ -6,14 +6,14 @@ export function reporters(): string {
 
 export function printMermaid(pkg: IPackage): string[] {
   const res: string[] = ['classDiagram'];
-  for (const [a, b] of Object.entries(pkg.classes)) {
-    res.push(`class ${a} {`);
-    for (const [c, d] of Object.entries(b.attribute)) {
-      res.push(`    +${d.typeName} ${c}`);
+  for (const [className, classDef] of Object.entries(pkg.classes)) {
+    res.push(`class ${className} {`);
+    for (const [propName, prop] of Object.entries(classDef.attribute)) {
+      res.push(`    +${prop.typeName} ${propName}`);
     }
-    for (const [e, f] of Object.entries(b.ownedOperation)) {
+    for (const [opName, op] of Object.entries(classDef.ownedOperation)) {
       res.push(
-        `    +${e}(${Object.keys(f.parameters).join(',')}) ${f.typeName}`
+        `    +${opName}(${Object.keys(op.parameters).join(',')}) ${op.typeName}`
       );
     }
     res.push(`}`);
