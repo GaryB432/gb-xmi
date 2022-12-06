@@ -103,7 +103,7 @@ describe('Translate', () => {
       isStatic: false,
       multi: false,
       typeName: 'any',
-      visibility: 'public',
+      visibility: 'private',
     });
   });
 });

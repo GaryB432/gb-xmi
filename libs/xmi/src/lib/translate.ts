@@ -1,5 +1,12 @@
 import * as ts from 'typescript';
-import { IClass, IOperation, IPackage, IParamter, IProperty } from './models';
+import {
+  IClass,
+  IOperation,
+  IPackage,
+  IParamter,
+  IProperty,
+  VisibilityKind,
+} from './models';
 
 const primitiveNames = [
   'Binary',
@@ -74,9 +81,15 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
 
 export function propFromElement(mem: ts.ClassElement): IProperty {
   const member = mem as ts.PropertyDeclaration;
+  let visibility: VisibilityKind = 'public';
+  for (const modf of member.modifiers) {
+    if (modf.kind === ts.SyntaxKind.PrivateKeyword) {
+      visibility = 'private';
+    }
+  }
   const prop: IProperty = {
     isReadOnly: false,
-    visibility: 'public',
+    visibility,
     multi: false,
     isStatic: false,
     typeName: typeNodeToString(member.type),
