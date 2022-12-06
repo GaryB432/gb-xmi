@@ -1,24 +1,8 @@
 import * as ts from 'typescript';
 import { factory } from 'typescript';
-import {
-  add,
-  greet,
-  kindToString,
-  meaning,
-  opFromElement,
-  propFromElement,
-} from './translate';
+import { kindToString, opFromElement, propFromElement } from './translate';
 
 describe('Translate', () => {
-  test('adds', () => {
-    expect(add(2, 3)).toEqual(5);
-  });
-  test('greets', () => {
-    expect(greet('world')).toEqual('translate says: hello to world');
-  });
-  test('meaning', () => {
-    expect(meaning.life).toEqual(42);
-  });
   test('kindToString', () => {
     expect(kindToString(4)).toEqual('unknown');
   });
@@ -106,7 +90,7 @@ describe('Translate', () => {
       isReadOnly: false,
       isStatic: false,
       multi: false,
-      typeName: 'unknown',
+      typeName: 'any',
       visibility: 'public',
     });
   });

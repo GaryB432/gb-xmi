@@ -1,16 +1,6 @@
 import * as ts from 'typescript';
 import { IOperation, IParamter, IProperty } from './models';
 
-export function greet(name: string): string {
-  return `translate says: hello to ${name}`;
-}
-export function add(a: number, b: number): number {
-  return a + b;
-}
-export const meaning = {
-  life: 42,
-};
-
 export function kindToString(kind: ts.SyntaxKind): string {
   // return ts.SyntaxKind[kind];
   switch (kind) {
@@ -22,6 +12,9 @@ export function kindToString(kind: ts.SyntaxKind): string {
     }
     case ts.SyntaxKind.StringKeyword: {
       return 'string';
+    }
+    case ts.SyntaxKind.UnionType: {
+      return 'any';
     }
   }
   console.log('hmm 2345p', ts.SyntaxKind[kind]);
