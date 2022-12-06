@@ -1,9 +1,5 @@
 import { IPackage } from '@gb-xmi/xmi';
 
-export function reporters(): string {
-  return 'reporters';
-}
-
 export function printMermaid(pkg: IPackage): string[] {
   const res: string[] = ['classDiagram'];
   for (const [className, classDef] of Object.entries(pkg.classes)) {

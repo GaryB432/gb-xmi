@@ -1,5 +1,5 @@
 import { IPackage } from '@gb-xmi/xmi';
-import { printMermaid, reporters } from './reporters';
+import { printMermaid } from './reporters';
 
 const catPackage: IPackage = {
   classes: {
@@ -49,9 +49,6 @@ const catPackage: IPackage = {
 };
 
 describe('reporters', () => {
-  it('should work', () => {
-    expect(reporters()).toEqual('reporters');
-  });
   test('get mermai', () => {
     expect(printMermaid(catPackage)).toEqual([
       'classDiagram',
