@@ -1,4 +1,3 @@
-
 export type VisibilityKind = "public" | "private" | "package";
 
 export type ParameterDirectionKind = "in" | "inout" | "out" | "return";

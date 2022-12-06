@@ -1,10 +1,22 @@
 import * as ts from 'typescript';
 import { factory } from 'typescript';
-import { kindToString, opFromElement, propFromElement } from './translate';
+import { opFromElement, propFromElement, typeNodeToString } from './translate';
 
 describe('Translate', () => {
-  test('kindToString', () => {
-    expect(kindToString(4)).toEqual('unknown');
+  test('typeNodeToString', () => {
+    expect(
+      typeNodeToString(
+        factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword)
+      )
+    ).toEqual('number');
+    expect(
+      typeNodeToString(
+        factory.createTypeReferenceNode(
+          factory.createIdentifier('Stuff'),
+          undefined
+        )
+      )
+    ).toEqual('Stuff');
   });
   test('opFromElement', () => {
     expect(

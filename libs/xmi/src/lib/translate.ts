@@ -1,9 +1,28 @@
 import * as ts from 'typescript';
-import { IOperation, IParamter, IProperty } from './models';
+import { IClass, IOperation, IPackage, IParamter, IProperty } from './models';
 
-export function kindToString(kind: ts.SyntaxKind): string {
+const primitiveNames = [
+  'Binary',
+  'Boolean',
+  'Byte',
+  'DateTime',
+  'DateTimeOffset',
+  'Decimal',
+  'Double',
+  'Float',
+  'Guid',
+  'Int16',
+  'Int32',
+  'Int64',
+  'SByte',
+  'String',
+  'Time',
+];
+
+export function typeNodeToString(node: ts.TypeNode): string {
   // return ts.SyntaxKind[kind];
-  switch (kind) {
+  let r = 'unknown';
+  switch (node.kind) {
     case ts.SyntaxKind.NumberKeyword: {
       return 'number';
     }
@@ -16,8 +35,17 @@ export function kindToString(kind: ts.SyntaxKind): string {
     case ts.SyntaxKind.UnionType: {
       return 'any';
     }
+    case ts.SyntaxKind.TypeReference: {
+      let n = 'unknown';
+      node.forEachChild((c) => {
+        if (ts.isIdentifier(c)) {
+          n = c.escapedText as string;
+        }
+      });
+      return n;
+    }
   }
-  console.log('hmm 2345p', ts.SyntaxKind[kind]);
+  console.log('hmm 2345p', ts.SyntaxKind[node.kind]);
   return 'unknown';
 }
 
@@ -29,7 +57,7 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
     parameters[pn.escapedText as string] = {
       direction: 'inout',
       multi: false,
-      typeName: kindToString(mf.type.kind),
+      typeName: typeNodeToString(mf.type),
     };
   }
   const operation: IOperation = {
@@ -39,7 +67,7 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
     parameters,
     visibility: 'public',
     isStatic: false,
-    typeName: kindToString(member.type.kind),
+    typeName: typeNodeToString(member.type),
   };
   return operation;
 }
@@ -51,7 +79,7 @@ export function propFromElement(mem: ts.ClassElement): IProperty {
     visibility: 'public',
     multi: false,
     isStatic: false,
-    typeName: kindToString(member.type.kind),
+    typeName: typeNodeToString(member.type),
   };
   return prop;
 }
