@@ -5,6 +5,22 @@ const unknownType: ts.TypeNode = ts.factory.createKeywordTypeNode(
   ts.SyntaxKind.UnknownKeyword
 );
 
+export function initializerToTypeName(node: ts.Expression): string {
+  switch (node.kind) {
+    case ts.SyntaxKind.FirstLiteralToken:
+    case ts.SyntaxKind.NumericLiteral: {
+      return 'number';
+    }
+    case ts.SyntaxKind.StringLiteral: {
+      return 'string';
+    }
+    default: {
+      console.log(ts.SyntaxKind[node.kind]);
+      return 'tbd';
+    }
+  }
+}
+
 export function typeNodeToString(node: ts.TypeNode): string {
   switch (node.kind) {
     case ts.SyntaxKind.NumberKeyword: {
@@ -62,6 +78,10 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
 export function propFromElement(mem: ts.ClassElement): IProperty {
   const member = mem as ts.PropertyDeclaration;
   let visibility: VisibilityKind = 'public';
+  let typeName = typeNodeToString(member.type ?? unknownType);
+  if (member.initializer) {
+    typeName = initializerToTypeName(member.initializer);
+  }
   if (member.modifiers) {
     for (const modf of member.modifiers) {
       if (modf.kind === ts.SyntaxKind.PrivateKeyword) {
@@ -74,7 +94,7 @@ export function propFromElement(mem: ts.ClassElement): IProperty {
     visibility,
     multi: false,
     isStatic: false,
-    typeName: typeNodeToString(member.type ?? unknownType),
+    typeName,
   };
   return prop;
 }

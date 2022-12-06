@@ -101,14 +101,14 @@ describe('Translate', () => {
             factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
             factory.createKeywordTypeNode(ts.SyntaxKind.UndefinedKeyword),
           ]),
-          undefined
+          factory.createStringLiteral('fun', true)
         )
       )
     ).toEqual({
       isReadOnly: false,
       isStatic: false,
       multi: false,
-      typeName: 'any',
+      typeName: 'string',
       visibility: 'private',
     });
   });
