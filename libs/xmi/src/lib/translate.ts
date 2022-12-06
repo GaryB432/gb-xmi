@@ -82,9 +82,11 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
 export function propFromElement(mem: ts.ClassElement): IProperty {
   const member = mem as ts.PropertyDeclaration;
   let visibility: VisibilityKind = 'public';
-  for (const modf of member.modifiers) {
-    if (modf.kind === ts.SyntaxKind.PrivateKeyword) {
-      visibility = 'private';
+  if (member.modifiers) {
+    for (const modf of member.modifiers) {
+      if (modf.kind === ts.SyntaxKind.PrivateKeyword) {
+        visibility = 'private';
+      }
     }
   }
   const prop: IProperty = {

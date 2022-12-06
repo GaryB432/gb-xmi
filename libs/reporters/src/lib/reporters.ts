@@ -1,11 +1,17 @@
-import { IPackage } from '@gb-xmi/xmi';
+import { IPackage, VisibilityKind } from '@gb-xmi/xmi';
 
 export function printMermaid(pkg: IPackage): string[] {
   const res: string[] = ['classDiagram'];
+  const visTable = new Map<VisibilityKind, string>([
+    ['public', '+'],
+    ['private', '-'],
+    ['package', '~'],
+  ]);
   for (const [className, classDef] of Object.entries(pkg.classes)) {
     res.push(`class ${className} {`);
     for (const [propName, prop] of Object.entries(classDef.attribute)) {
-      res.push(`    +${prop.typeName} ${propName}`);
+      const vis = visTable.get(prop.visibility) ?? 'public';
+      res.push(`    ${vis}${prop.typeName} ${propName}`);
     }
     for (const [opName, op] of Object.entries(classDef.ownedOperation)) {
       res.push(

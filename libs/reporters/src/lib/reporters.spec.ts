@@ -36,7 +36,7 @@ const catPackage: IPackage = {
         },
         color: {
           isReadOnly: false,
-          visibility: 'public',
+          visibility: 'private',
           multi: false,
           isStatic: false,
           typeName: 'unknown',
@@ -49,12 +49,12 @@ const catPackage: IPackage = {
 };
 
 describe('reporters', () => {
-  test('get mermai', () => {
+  test('printMermaid', () => {
     expect(printMermaid(catPackage)).toEqual([
       'classDiagram',
       'class Cat {',
       '    +number whiskers',
-      '    +unknown color',
+      '    -unknown color',
       '    +meow(duration,volume) void',
       '}',
     ]);
