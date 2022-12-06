@@ -2,12 +2,13 @@
 /* NO IT IS NOT */
 
 import { printMermaid } from '@gb-xmi/reporters';
-import type {
+import {
   IClass,
   IModel,
   IOperation,
-  IParamter,
   IProperty,
+  opFromElement,
+  propFromElement,
 } from '@gb-xmi/xmi';
 import * as chalk from 'chalk';
 import * as ts from 'typescript';
@@ -35,19 +36,6 @@ const model: IModel = {
   packages: { main: { classes: {} } },
 };
 
-function kindToString(kind: ts.SyntaxKind): string {
-  // return ts.SyntaxKind[kind];
-  switch (kind) {
-    case ts.SyntaxKind.NumberKeyword: {
-      return 'number';
-    }
-    case ts.SyntaxKind.VoidKeyword: {
-      return 'void';
-    }
-  }
-  return 'unknown';
-}
-
 export async function showTsCommand({
   file,
   opts,
@@ -60,14 +48,6 @@ export async function showTsCommand({
     console.log(chalk.yellowBright('Dry Run. Nothing written.'));
   } else {
     const content = ts.sys.readFile(file);
-    // const content = `export class Cat {
-    //   whiskers: number = 0;
-    //   private color: string | undefined;
-    //   meow(duration: number, volume: number): void {
-    //     console.log('tbd');
-    //   }
-    // }
-    // `;
     if (!content) {
       console.log(file);
       throw new Error('file not found');
@@ -101,14 +81,7 @@ export async function showTsCommand({
           const memberName = mem.name as ts.Identifier;
           switch (mem.kind) {
             case ts.SyntaxKind.PropertyDeclaration: {
-              const member = mem as ts.PropertyDeclaration;
-              const prop: IProperty = {
-                isReadOnly: false,
-                visibility: 'public',
-                multi: false,
-                isStatic: false,
-                typeName: kindToString(member.type.kind),
-              };
+              const prop: IProperty = propFromElement(mem);
               classDefinition.attribute[memberName.escapedText as string] =
                 prop;
               if (opts.verbose) {
@@ -121,25 +94,7 @@ export async function showTsCommand({
               break;
             }
             case ts.SyntaxKind.MethodDeclaration: {
-              const member = mem as ts.MethodDeclaration;
-              const parameters: Record<string, IParamter> = {};
-              for (const mf of member.parameters) {
-                const pn = mf.name as ts.Identifier;
-                parameters[pn.escapedText as string] = {
-                  direction: 'inout',
-                  multi: false,
-                  typeName: kindToString(mf.type.kind),
-                };
-              }
-              const operation: IOperation = {
-                isQuery: false,
-                isAbstract: false,
-                isReadOnly: false,
-                parameters,
-                visibility: 'public',
-                isStatic: false,
-                typeName: kindToString(member.type.kind),
-              };
+              const operation: IOperation = opFromElement(mem);
               classDefinition.ownedOperation[memberName.escapedText as string] =
                 operation;
               if (opts.verbose) {
