@@ -11,12 +11,18 @@ describe('Translate', () => {
     ).toEqual('number');
     expect(
       typeNodeToString(
+        factory.createKeywordTypeNode(ts.SyntaxKind.UnknownKeyword)
+      )
+    ).toEqual('unknown');
+    expect(
+      typeNodeToString(
         factory.createTypeReferenceNode(
           factory.createIdentifier('Stuff'),
           undefined
         )
       )
     ).toEqual('Stuff');
+    // expect(typeNodeToString(undefined)).toEqual('unknown');
   });
   test('opFromElement', () => {
     expect(

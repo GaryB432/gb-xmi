@@ -1,34 +1,11 @@
 import * as ts from 'typescript';
-import {
-  IClass,
-  IOperation,
-  IPackage,
-  IParamter,
-  IProperty,
-  VisibilityKind,
-} from './models';
+import { IOperation, IParamter, IProperty, VisibilityKind } from './models';
 
-const primitiveNames = [
-  'Binary',
-  'Boolean',
-  'Byte',
-  'DateTime',
-  'DateTimeOffset',
-  'Decimal',
-  'Double',
-  'Float',
-  'Guid',
-  'Int16',
-  'Int32',
-  'Int64',
-  'SByte',
-  'String',
-  'Time',
-];
+const unknownType: ts.TypeNode = ts.factory.createKeywordTypeNode(
+  ts.SyntaxKind.UnknownKeyword
+);
 
 export function typeNodeToString(node: ts.TypeNode): string {
-  // return ts.SyntaxKind[kind];
-  let r = 'unknown';
   switch (node.kind) {
     case ts.SyntaxKind.NumberKeyword: {
       return 'number';
@@ -51,8 +28,11 @@ export function typeNodeToString(node: ts.TypeNode): string {
       });
       return n;
     }
+    case ts.SyntaxKind.UnknownKeyword: {
+      return 'unknown';
+    }
   }
-  console.log('hmm 2345p', ts.SyntaxKind[node.kind]);
+  console.log('unknown type for ', node);
   return 'unknown';
 }
 
@@ -94,7 +74,7 @@ export function propFromElement(mem: ts.ClassElement): IProperty {
     visibility,
     multi: false,
     isStatic: false,
-    typeName: typeNodeToString(member.type),
+    typeName: typeNodeToString(member.type ?? unknownType),
   };
   return prop;
 }
