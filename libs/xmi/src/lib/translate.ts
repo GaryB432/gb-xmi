@@ -1,5 +1,11 @@
 import * as ts from 'typescript';
-import { IOperation, IParamter, IProperty, VisibilityKind } from './models';
+import {
+  IClass,
+  IOperation,
+  IParamter,
+  IProperty,
+  VisibilityKind,
+} from './models';
 
 const unknownType: ts.TypeNode = ts.factory.createKeywordTypeNode(
   ts.SyntaxKind.UnknownKeyword
@@ -97,4 +103,30 @@ export function propFromElement(mem: ts.ClassElement): IProperty {
     typeName,
   };
   return prop;
+}
+
+export function classFromClassElement(classDec: ts.ClassDeclaration): IClass {
+  const classDefinition: IClass = {
+    ownedOperation: {},
+    attribute: {},
+    isAbstract: false,
+    visibility: 'public',
+  };
+  for (const mem of classDec.members) {
+    const memberName = mem.name as ts.Identifier;
+    switch (mem.kind) {
+      case ts.SyntaxKind.PropertyDeclaration: {
+        const prop: IProperty = propFromElement(mem);
+        classDefinition.attribute[memberName.escapedText as string] = prop;
+        break;
+      }
+      case ts.SyntaxKind.MethodDeclaration: {
+        const operation: IOperation = opFromElement(mem);
+        classDefinition.ownedOperation[memberName.escapedText as string] =
+          operation;
+        break;
+      }
+    }
+  }
+  return classDefinition;
 }
