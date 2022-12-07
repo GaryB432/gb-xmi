@@ -23,8 +23,11 @@ export function initializerToTypeName(node: ts.Expression): string {
     case ts.SyntaxKind.ObjectLiteralExpression: {
       return 'object';
     }
+    case ts.SyntaxKind.ArrowFunction: {
+      return 'function';
+    }
   }
-  console.log(ts.SyntaxKind[node.kind]);
+  console.log('unknown initializer', ts.SyntaxKind[node.kind]);
   return 'unknown';
 }
 

@@ -1,6 +1,6 @@
 import { IPackage, VisibilityKind } from '@gb-xmi/xmi';
 
-export function printMermaid(pkg: IPackage): string[] {
+function printMermaid(pkg: IPackage): string[] {
   const res: string[] = ['classDiagram'];
   const visTable = new Map<VisibilityKind, string>([
     ['public', '+'],
@@ -21,4 +21,8 @@ export function printMermaid(pkg: IPackage): string[] {
     res.push(`}`);
   }
   return res;
+}
+
+export function mermaidMarkdown(pkg: IPackage): string {
+  return ['```mermaid', ...printMermaid(pkg), '```'].join('\n');
 }

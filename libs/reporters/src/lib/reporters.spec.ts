@@ -1,5 +1,5 @@
 import { IPackage } from '@gb-xmi/xmi';
-import { printMermaid } from './reporters';
+import { mermaidMarkdown } from './reporters';
 
 const catPackage: IPackage = {
   classes: {
@@ -50,13 +50,15 @@ const catPackage: IPackage = {
 
 describe('reporters', () => {
   test('printMermaid', () => {
-    expect(printMermaid(catPackage)).toEqual([
+    expect(mermaidMarkdown(catPackage).split('\n')).toEqual([
+      '```mermaid',
       'classDiagram',
       'class Cat {',
       '    +number whiskers',
       '    -unknown color',
       '    +meow(duration,volume) void',
       '}',
+      '```',
     ]);
   });
 });
