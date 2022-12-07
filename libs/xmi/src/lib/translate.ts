@@ -20,11 +20,12 @@ export function initializerToTypeName(node: ts.Expression): string {
     case ts.SyntaxKind.StringLiteral: {
       return 'string';
     }
-    default: {
-      console.log(ts.SyntaxKind[node.kind]);
-      return 'tbd';
+    case ts.SyntaxKind.ObjectLiteralExpression: {
+      return 'object';
     }
   }
+  console.log(ts.SyntaxKind[node.kind]);
+  return 'unknown';
 }
 
 export function typeNodeToString(node: ts.TypeNode): string {
@@ -57,7 +58,7 @@ export function typeNodeToString(node: ts.TypeNode): string {
       return 'unknown';
     }
   }
-  console.log('unknown type for ', node);
+  console.log('unknown type for', ts.SyntaxKind[node.kind]);
   return 'unknown';
 }
 
