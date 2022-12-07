@@ -2,7 +2,7 @@
 /* NO IT IS NOT */
 
 import { printMermaid } from '@gb-xmi/reporters';
-import { classFromClassElement, IModel } from '@gb-xmi/xmi';
+import { classFromClassElement, IModel, IPackage } from '@gb-xmi/xmi';
 import * as chalk from 'chalk';
 import * as ts from 'typescript';
 import { CommandArgs } from './show-ts.types';
@@ -72,20 +72,29 @@ export async function showTsCommand({
           break;
         }
         case ts.SyntaxKind.ModuleDeclaration: {
-          cn.forEachChild((moduleNode) => {
-            console.log(ts.SyntaxKind[moduleNode.kind]);
-          });
-          // const className = d.name.escapedText as string;
-          // const classDefinition = classFromClassElement(d);
-          // model.packages.main.classes[className] = classDefinition;
+          console.log('module def:');
+          const md = cn as ts.ModuleDeclaration;
+          if (ts.isIdentifier(md.name)) {
+            console.log(md.name.escapedText);
+            const p: IPackage = {
+              classes: {},
+            };
+            md.body.forEachChild((d) => {
+              if (ts.isClassDeclaration(d)) {
+                // console.log(d.name.escapedText);
+                const className = d.name.escapedText as string;
+                const classDefinition = classFromClassElement(d);
+                p.classes[className] = classDefinition;
+              }
+            });
+            console.log(printMermaid(p).join('\n'));
+          }
           break;
         }
         default: {
           console.log('tbd');
           break;
         }
-      }
-      if (ts.isClassDeclaration(cn)) {
       }
     }
     const mermaid = printMermaid(model.packages.main);
