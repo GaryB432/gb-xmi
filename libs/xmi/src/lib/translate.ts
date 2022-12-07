@@ -115,6 +115,28 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
   return operation;
 }
 
+export function opFromSignature(mem: ts.MethodSignature): IOperation {
+  const parameters = {};
+  for (const mf of mem.parameters) {
+    const pn = mf.name as ts.Identifier;
+    parameters[pn.escapedText as string] = {
+      direction: 'inout',
+      multi: false,
+      typeName: typeNodeToString(mf.type ?? unknownType),
+    };
+  }
+  const op: IOperation = {
+    isQuery: false,
+    isAbstract: false,
+    isReadOnly: false,
+    parameters,
+    visibility: 'public',
+    isStatic: false,
+    typeName: typeNodeToString(mem.type ?? unknownType),
+  };
+  return op;
+}
+
 export function propFromSignature(mem: ts.PropertySignature): IProperty {
   const prop: IProperty = {
     isReadOnly: false,
@@ -173,6 +195,13 @@ export function classFromInterface(classDec: ts.InterfaceDeclaration): IClass {
         const pn = ps.name as ts.Identifier;
         classDefinition.attribute[pn.escapedText as string] =
           propFromSignature(ps);
+        break;
+      }
+      case ts.SyntaxKind.MethodSignature: {
+        const ps = c as ts.MethodSignature;
+        const pn = ps.name as ts.Identifier;
+        classDefinition.ownedOperation[pn.escapedText as string] =
+          opFromSignature(ps);
         break;
       }
     }
