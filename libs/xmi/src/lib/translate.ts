@@ -54,10 +54,11 @@ export function typeNodeToString(node: ts.TypeNode): string {
             break;
           }
           case ts.SyntaxKind.QualifiedName: {
-
-            
-            const r = c.right.escapedText;
-            n = [r].join('-');
+            const ns = [];
+            c.forEachChild((t: ts.Identifier) => {
+              ns.push(t.escapedText);
+            });
+            n = ns.join('-');
             break;
           }
         }

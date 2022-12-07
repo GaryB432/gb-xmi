@@ -22,6 +22,17 @@ describe('Translate', () => {
         )
       )
     ).toEqual('Stuff');
+    expect(
+      typeNodeToString(
+        factory.createTypeReferenceNode(
+          factory.createQualifiedName(
+            factory.createIdentifier('SampleModule'),
+            factory.createIdentifier('Animal')
+          ),
+          undefined
+        )
+      )
+    ).toEqual('SampleModule-Animal');
     // expect(typeNodeToString(undefined)).toEqual('unknown');
   });
   test('opFromElement', () => {
@@ -135,7 +146,7 @@ describe('Translate', () => {
     expect(
       propFromElement(
         factory.createPropertyDeclaration(
-          [factory.createModifier(ts.SyntaxKind.ProtectedKeyword)],
+          undefined,
           factory.createIdentifier('color'),
           undefined,
           factory.createTypeReferenceNode(
@@ -152,8 +163,33 @@ describe('Translate', () => {
       isReadOnly: false,
       isStatic: false,
       multi: false,
-      typeName: 'Animal',
-      visibility: 'package',
+      typeName: 'SampleModule-Animal',
+      visibility: 'public',
+    });
+  });
+  test('propFromElement qname one', () => {
+    expect(
+      propFromElement(
+        factory.createPropertyDeclaration(
+          undefined,
+          factory.createIdentifier('color'),
+          undefined,
+          factory.createTypeReferenceNode(
+            factory.createQualifiedName(
+              factory.createIdentifier('SampleModule'),
+              factory.createIdentifier('Animal')
+            ),
+            undefined
+          ),
+          undefined
+        )
+      )
+    ).toEqual({
+      isReadOnly: false,
+      isStatic: false,
+      multi: false,
+      typeName: 'SampleModule-Animal',
+      visibility: 'public',
     });
   });
 });
