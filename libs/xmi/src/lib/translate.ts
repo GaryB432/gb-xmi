@@ -36,6 +36,9 @@ export function typeNodeToString(node: ts.TypeNode): string {
     throw new Error('node is required');
   }
   switch (node.kind) {
+    case ts.SyntaxKind.BooleanKeyword: {
+      return 'boolean';
+    }
     case ts.SyntaxKind.NumberKeyword: {
       return 'number';
     }
@@ -99,6 +102,17 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
   return operation;
 }
 
+export function propFromSignature(mem: ts.PropertySignature): IProperty {
+  const prop: IProperty = {
+    isReadOnly: false,
+    visibility: 'public',
+    multi: false,
+    isStatic: false,
+    typeName: typeNodeToString(mem.type ?? unknownType),
+  };
+  return prop;
+}
+
 export function propFromElement(mem: ts.ClassElement): IProperty {
   const member = mem as ts.PropertyDeclaration;
   let visibility: VisibilityKind = 'public';
@@ -128,6 +142,30 @@ export function propFromElement(mem: ts.ClassElement): IProperty {
     typeName,
   };
   return prop;
+}
+
+export function classFromInterface(classDec: ts.InterfaceDeclaration): IClass {
+  const classDefinition: IClass = {
+    annotation: ['interface'],
+    ownedOperation: {},
+    attribute: {},
+    isAbstract: false,
+    visibility: 'public',
+  };
+
+  classDec.forEachChild((c) => {
+    switch (c.kind) {
+      case ts.SyntaxKind.PropertySignature: {
+        const ps = c as ts.PropertySignature;
+        const pn = ps.name as ts.Identifier;
+        classDefinition.attribute[pn.escapedText as string] =
+          propFromSignature(ps);
+      }
+      case ts.SyntaxKind.Identifier: {
+      }
+    }
+  });
+  return classDefinition;
 }
 
 export function classFromClassElement(classDec: ts.ClassDeclaration): IClass {

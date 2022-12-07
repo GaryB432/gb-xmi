@@ -1,6 +1,11 @@
 import * as ts from 'typescript';
 import { factory } from 'typescript';
-import { opFromElement, propFromElement, typeNodeToString } from './translate';
+import {
+  classFromInterface,
+  opFromElement,
+  propFromElement,
+  typeNodeToString,
+} from './translate';
 
 describe('Translate', () => {
   test('typeNodeToString', () => {
@@ -121,6 +126,53 @@ describe('Translate', () => {
       multi: false,
       typeName: 'string',
       visibility: 'private',
+    });
+  });
+  test('classFromInterface', () => {
+    expect(
+      classFromInterface(
+        factory.createInterfaceDeclaration(
+          undefined,
+          factory.createIdentifier('Howdy'),
+          undefined,
+          undefined,
+          [
+            factory.createPropertySignature(
+              undefined,
+              factory.createIdentifier('fun'),
+              undefined,
+              factory.createKeywordTypeNode(ts.SyntaxKind.BooleanKeyword)
+            ),
+            factory.createPropertySignature(
+              undefined,
+              factory.createIdentifier('also'),
+              undefined,
+              factory.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword)
+            ),
+          ]
+        )
+      )
+    ).toEqual({
+      annotation: ['interface'],
+      ownedOperation: {},
+      attribute: {
+        fun: {
+          isReadOnly: false,
+          visibility: 'public',
+          multi: false,
+          isStatic: false,
+          typeName: 'boolean',
+        },
+        also: {
+          isReadOnly: false,
+          visibility: 'public',
+          multi: false,
+          isStatic: false,
+          typeName: 'number',
+        },
+      },
+      isAbstract: false,
+      visibility: 'public',
     });
   });
   test('propFromElement package', () => {

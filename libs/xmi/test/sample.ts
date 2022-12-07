@@ -1,3 +1,4 @@
+import { AddressInfo } from 'net';
 import ts = require('typescript');
 
 /* eslint-disable @typescript-eslint/no-inferrable-types */
@@ -8,6 +9,13 @@ export class Cat {
   meow(duration: number, volume: number): void {
     console.log(this.color, duration * volume);
   }
+}
+
+export interface LivingThing {
+  anchor: string;
+  another: number;
+  whoKnows;
+  behavior: () => number;
 }
 
 export module SampleModule {
