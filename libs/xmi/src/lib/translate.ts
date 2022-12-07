@@ -28,6 +28,9 @@ export function initializerToTypeName(node: ts.Expression): string {
 }
 
 export function typeNodeToString(node: ts.TypeNode): string {
+  if (!node) {
+    throw new Error('node is required');
+  }
   switch (node.kind) {
     case ts.SyntaxKind.NumberKeyword: {
       return 'number';
@@ -66,7 +69,7 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
     parameters[pn.escapedText as string] = {
       direction: 'inout',
       multi: false,
-      typeName: typeNodeToString(mf.type),
+      typeName: typeNodeToString(mf.type ?? unknownType),
     };
   }
   const operation: IOperation = {
@@ -76,7 +79,7 @@ export function opFromElement(mem: ts.ClassElement): IOperation {
     parameters,
     visibility: 'public',
     isStatic: false,
-    typeName: typeNodeToString(member.type),
+    typeName: typeNodeToString(member.type ?? unknownType),
   };
   return operation;
 }
@@ -90,8 +93,15 @@ export function propFromElement(mem: ts.ClassElement): IProperty {
   }
   if (member.modifiers) {
     for (const modf of member.modifiers) {
-      if (modf.kind === ts.SyntaxKind.PrivateKeyword) {
-        visibility = 'private';
+      switch (modf.kind) {
+        case ts.SyntaxKind.PrivateKeyword: {
+          visibility = 'private';
+          break;
+        }
+        case ts.SyntaxKind.ProtectedKeyword: {
+          visibility = 'package';
+          break;
+        }
       }
     }
   }

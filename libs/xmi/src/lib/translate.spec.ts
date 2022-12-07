@@ -90,7 +90,7 @@ describe('Translate', () => {
       visibility: 'public',
     });
   });
-  test('propFromElement', () => {
+  test('propFromElement infer string', () => {
     expect(
       propFromElement(
         factory.createPropertyDeclaration(
@@ -110,6 +110,25 @@ describe('Translate', () => {
       multi: false,
       typeName: 'string',
       visibility: 'private',
+    });
+  });
+  test('propFromElement package', () => {
+    expect(
+      propFromElement(
+        factory.createPropertyDeclaration(
+          [factory.createModifier(ts.SyntaxKind.ProtectedKeyword)],
+          factory.createIdentifier('color'),
+          undefined,
+          factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+          undefined
+        )
+      )
+    ).toEqual({
+      isReadOnly: false,
+      isStatic: false,
+      multi: false,
+      typeName: 'string',
+      visibility: 'package',
     });
   });
 });
