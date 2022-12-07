@@ -54,9 +54,41 @@ describe('reporters', () => {
       '```mermaid',
       'classDiagram',
       'class Cat {',
-      '    +number whiskers',
-      '    -unknown color',
-      '    +meow(duration,volume) void',
+      '  +number whiskers',
+      '  -unknown color',
+      '  +meow(duration,volume) void',
+      '}',
+      '```',
+    ]);
+  });
+  test('printMermaid', () => {
+    expect(
+      mermaidMarkdown({
+        classes: {
+          Subject: {
+            annotation: ['a', 'b'],
+            ownedOperation: {},
+            attribute: {
+              asdf: {
+                isReadOnly: false,
+                visibility: 'public',
+                multi: false,
+                isStatic: false,
+                typeName: 'number',
+              },
+            },
+            isAbstract: false,
+            visibility: 'public',
+          },
+        },
+      }).split('\n')
+    ).toEqual([
+      '```mermaid',
+      'classDiagram',
+      'class Subject {',
+      '  <<a>>',
+      '  <<b>>',
+      '  +number asdf',
       '}',
       '```',
     ]);

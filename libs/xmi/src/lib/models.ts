@@ -1,6 +1,6 @@
-export type VisibilityKind = "public" | "private" | "package";
+export type VisibilityKind = 'public' | 'private' | 'package';
 
-export type ParameterDirectionKind = "in" | "inout" | "out" | "return";
+export type ParameterDirectionKind = 'in' | 'inout' | 'out' | 'return';
 
 // export interface IElement {
 // }
@@ -34,6 +34,7 @@ export interface IOperation extends IFeature {
 }
 
 export interface IClass {
+  annotation?: string[];
   ownedOperation: { [name: string]: IOperation };
   attribute: { [name: string]: IProperty };
   isAbstract: boolean;
@@ -47,4 +48,3 @@ export interface IModel {
 export interface IPackage {
   classes: { [name: string]: IClass };
 }
-
