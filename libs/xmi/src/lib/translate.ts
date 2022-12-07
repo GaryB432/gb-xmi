@@ -36,8 +36,18 @@ export function typeNodeToString(node: ts.TypeNode): string {
     throw new Error('node is required');
   }
   switch (node.kind) {
+    case ts.SyntaxKind.AnyKeyword: {
+      return 'any';
+    }
+    case ts.SyntaxKind.ArrayType: {
+      const tn = node as ts.ArrayTypeNode;
+      return typeNodeToString(tn.elementType) + '[]';
+    }
     case ts.SyntaxKind.BooleanKeyword: {
       return 'boolean';
+    }
+    case ts.SyntaxKind.FunctionType: {
+      return 'function';
     }
     case ts.SyntaxKind.NumberKeyword: {
       return 'number';
@@ -48,8 +58,8 @@ export function typeNodeToString(node: ts.TypeNode): string {
     case ts.SyntaxKind.StringKeyword: {
       return 'string';
     }
-    case ts.SyntaxKind.UnionType: {
-      return 'any';
+    case ts.SyntaxKind.TypeLiteral: {
+      return 'object';
     }
     case ts.SyntaxKind.TypeReference: {
       let n = 'unknown';
@@ -71,11 +81,14 @@ export function typeNodeToString(node: ts.TypeNode): string {
       });
       return n;
     }
+    case ts.SyntaxKind.UnionType: {
+      return 'any';
+    }
     case ts.SyntaxKind.UnknownKeyword: {
       return 'unknown';
     }
   }
-  console.log('unknown type for', ts.SyntaxKind[node.kind]);
+  console.log('unknown type for', ts.SyntaxKind[node.kind], node.getText());
   return 'unknown';
 }
 
@@ -160,8 +173,7 @@ export function classFromInterface(classDec: ts.InterfaceDeclaration): IClass {
         const pn = ps.name as ts.Identifier;
         classDefinition.attribute[pn.escapedText as string] =
           propFromSignature(ps);
-      }
-      case ts.SyntaxKind.Identifier: {
+        break;
       }
     }
   });

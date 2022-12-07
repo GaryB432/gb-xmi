@@ -5,17 +5,12 @@ import { mermaidMarkdown } from '@gb-xmi/reporters';
 import {
   classFromClassElement,
   classFromInterface,
-  IModel,
   IPackage,
 } from '@gb-xmi/xmi';
 import * as chalk from 'chalk';
 import * as ts from 'typescript';
 import { GbCompilerHost } from '../shared';
 import { CommandArgs } from './show-ts.types';
-
-const model: IModel = {
-  packages: { main: { classes: {} } },
-};
 
 export async function showTsCommand({
   file,
@@ -46,24 +41,24 @@ export async function showTsCommand({
     );
     const ast = program.getSourceFile(file);
 
-    // const classes: ts.ClassDeclaration[] = [];
+    const rootPack: IPackage = {
+      classes: {},
+    };
 
     for (const cn of ast.getChildAt(0).getChildren()) {
-      // console.log(ts.SyntaxKind[cn.kind]);
-
       switch (cn.kind) {
         case ts.SyntaxKind.InterfaceDeclaration: {
           const d = cn as ts.InterfaceDeclaration;
           const className = d.name.escapedText as string;
           const classDefinition = classFromInterface(d);
-          model.packages.main.classes[className] = classDefinition;
+          rootPack.classes[className] = classDefinition;
           break;
         }
         case ts.SyntaxKind.ClassDeclaration: {
           const d = cn as ts.ClassDeclaration;
           const className = d.name.escapedText as string;
           const classDefinition = classFromClassElement(d);
-          model.packages.main.classes[className] = classDefinition;
+          rootPack.classes[className] = classDefinition;
           break;
         }
         case ts.SyntaxKind.ModuleDeclaration: {
@@ -90,6 +85,6 @@ export async function showTsCommand({
         }
       }
     }
-    console.log(mermaidMarkdown(model.packages.main));
+    console.log(mermaidMarkdown(rootPack));
   }
 }

@@ -1,4 +1,5 @@
-import { AddressInfo } from 'net';
+/* eslint-disable */
+
 import ts = require('typescript');
 
 /* eslint-disable @typescript-eslint/no-inferrable-types */
