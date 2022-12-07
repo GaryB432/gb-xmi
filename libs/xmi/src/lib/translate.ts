@@ -47,9 +47,19 @@ export function typeNodeToString(node: ts.TypeNode): string {
     }
     case ts.SyntaxKind.TypeReference: {
       let n = 'unknown';
-      node.forEachChild((c) => {
-        if (ts.isIdentifier(c)) {
-          n = c.escapedText as string;
+      node.forEachChild((c: ts.Identifier | ts.QualifiedName) => {
+        switch (c.kind) {
+          case ts.SyntaxKind.Identifier: {
+            n = c.escapedText as string;
+            break;
+          }
+          case ts.SyntaxKind.QualifiedName: {
+
+            
+            const r = c.right.escapedText;
+            n = [r].join('-');
+            break;
+          }
         }
       });
       return n;

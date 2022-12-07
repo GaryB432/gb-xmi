@@ -131,4 +131,29 @@ describe('Translate', () => {
       visibility: 'package',
     });
   });
+  test('propFromElement qname', () => {
+    expect(
+      propFromElement(
+        factory.createPropertyDeclaration(
+          [factory.createModifier(ts.SyntaxKind.ProtectedKeyword)],
+          factory.createIdentifier('color'),
+          undefined,
+          factory.createTypeReferenceNode(
+            factory.createQualifiedName(
+              factory.createIdentifier('SampleModule'),
+              factory.createIdentifier('Animal')
+            ),
+            undefined
+          ),
+          undefined
+        )
+      )
+    ).toEqual({
+      isReadOnly: false,
+      isStatic: false,
+      multi: false,
+      typeName: 'Animal',
+      visibility: 'package',
+    });
+  });
 });
