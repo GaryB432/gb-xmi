@@ -21,7 +21,7 @@ const catPackage: IPackage = {
               typeName: 'number',
             },
           },
-          visibility: 'public',
+          visibility: 'private',
           isStatic: false,
           typeName: 'void',
         },
@@ -56,7 +56,7 @@ describe('reporters', () => {
       'class Cat {',
       '  +number whiskers',
       '  -unknown color',
-      '  +meow(duration,volume) void',
+      '  -meow(duration,volume) void',
       '}',
       '```',
     ]);
