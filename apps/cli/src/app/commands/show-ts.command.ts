@@ -52,17 +52,18 @@ export async function showTsCommand({
         // const xm = new XmiModel('s')
         const md = cn as ts.ModuleDeclaration;
         if (ts.isIdentifier(md.name)) {
-          console.log(`## ${md.name.escapedText}`);
-          const p = new XmiPackage(md.name.escapedText as string);
+          // console.log(`## ${md.name.escapedText}`);
+          // const p = new XmiPackage(md.name.escapedText as string);
+          const p = new XmiPackage('tbd');
+          // const m = new XmiModel('??')
           md.body.forEachChild((d) => {
             if (ts.isClassDeclaration(d)) {
               p.add(classFromClassElement(d), d.name.escapedText as string);
             }
           });
           model.add(p, 'xis some name that is here');
-          // console.log(mermaidMarkdown(p));
         }
-        break;  
+        break;
       }
       default: {
         console.log(ts.SyntaxKind[cn.kind], 'ignored');
@@ -70,7 +71,5 @@ export async function showTsCommand({
       }
     }
   }
-  // console.log(mermaidMarkdown(rootPack));
-  console.log(model.mermaidMarkdown())
-  // console.log(JSON.stringify(model, undefined, 2));
+  console.log(model.mermaidMarkdown());
 }

@@ -28,3 +28,18 @@ export class Cat {
     console.log(this.color, duration * volume);
   }
 }
+
+export namespace FunOne {
+  export class Apple implements Fruit {
+    color = 'red';
+    weight() {
+      return 3;
+    }
+    name = 'Apple';
+  }
+  export interface Fruit {
+    name: string;
+    color: string;
+    weight: () => number;
+  }
+}
