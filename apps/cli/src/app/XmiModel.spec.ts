@@ -1,15 +1,82 @@
-import { XmiModel, XmiPackage } from './XmiModel';
+import { IClass, IOperation, IPackage, IProperty } from '@gb-xmi/xmi';
+import { XmiModel } from './XmiModel';
+// import { XmiModel, XmiPackage } from './XmiModel';
+
+class StubFactory {
+  createOperation(params: 0): IOperation {
+    return {
+      isQuery: false,
+      isAbstract: false,
+      isReadOnly: false,
+      parameters: {},
+      visibility: 'package',
+      isStatic: false,
+      typeName: 'void',
+    };
+  }
+  createProperty(): IProperty {
+    return {
+      isReadOnly: false,
+      isStatic: false,
+      multi: false,
+      typeName: 'boolean',
+      visibility: 'package',
+    };
+  }
+  createClass(props: number, ops: number): IClass {
+    const ownedOperation = {};
+    const attribute = {};
+    for (let i = 0; i < props; i++) {
+      ownedOperation[`op${i}`] = this.createOperation(0);
+    }
+    for (let i = 0; i < ops; i++) {
+      attribute[`f${i}`] = this.createProperty();
+    }
+    return {
+      ownedOperation,
+      attribute,
+      isAbstract: false,
+      visibility: 'package',
+    };
+  }
+  createPackage(numClasses: number): IPackage {
+    const classes = {};
+    for (let i = 0; i < numClasses; i++) {
+      classes[`Class${i}`] = this.createClass(1, 1);
+    }
+    return { classes };
+  }
+}
+
+const factory = new StubFactory();
 
 describe('XmiModel', () => {
   let xmiModel: XmiModel;
   beforeEach(() => {
-    xmiModel = new XmiModel('tester');
+    xmiModel = new XmiModel('is it used?');
+    xmiModel.add(factory.createPackage(1), 'P1');
+    xmiModel.add(factory.createPackage(1), 'P2');
   });
   test('adds', () => {
-    xmiModel.add(new XmiPackage('hmmm'), 'sdf');
     expect(xmiModel).toBeDefined();
   });
-  test('greets', () => {
-    expect(xmiModel.greet('world')).toEqual('XmiModel says: hello to world');
+  test('printMermaid', () => {
+    expect(xmiModel.mermaidMarkdown().split('\n')).toEqual([
+      '```mermaid',
+      'classDiagram',
+      'class Class0 {',
+      '  ~boolean f0',
+      '  ~op0() void',
+      '}',
+      '```',
+      '',
+      '```mermaid',
+      'classDiagram',
+      'class Class0 {',
+      '  ~boolean f0',
+      '  ~op0() void',
+      '}',
+      '```',
+    ]);
   });
 });

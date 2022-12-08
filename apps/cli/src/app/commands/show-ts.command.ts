@@ -1,7 +1,6 @@
 /* This is a generated file. Make changes to cli.config.json and run "nx sync cli" */
 /* NO IT IS NOT */
 
-import { mermaidMarkdown } from '@gb-xmi/reporters';
 import {
   classFromClassElement,
   classFromInterface,
@@ -34,34 +33,36 @@ export async function showTsCommand({
   const ast = program.getSourceFile(file);
 
   const rootPack = new XmiPackage('.');
+  const model = new XmiModel('.');
+  model.add(rootPack, '.');
 
   for (const cn of ast.getChildAt(0).getChildren()) {
     switch (cn.kind) {
       case ts.SyntaxKind.InterfaceDeclaration: {
         const d = cn as ts.InterfaceDeclaration;
-        rootPack.classes[d.name.escapedText as string] = classFromInterface(d);
+        rootPack.add(classFromInterface(d), d.name.escapedText as string);
         break;
       }
       case ts.SyntaxKind.ClassDeclaration: {
         const d = cn as ts.ClassDeclaration;
-        rootPack.classes[d.name.escapedText as string] =
-          classFromClassElement(d);
+        rootPack.add(classFromClassElement(d), d.name.escapedText as string);
         break;
       }
       case ts.SyntaxKind.ModuleDeclaration: {
+        // const xm = new XmiModel('s')
         const md = cn as ts.ModuleDeclaration;
         if (ts.isIdentifier(md.name)) {
           console.log(`## ${md.name.escapedText}`);
           const p = new XmiPackage(md.name.escapedText as string);
           md.body.forEachChild((d) => {
             if (ts.isClassDeclaration(d)) {
-              p.classes[d.name.escapedText as string] =
-                classFromClassElement(d);
+              p.add(classFromClassElement(d), d.name.escapedText as string);
             }
           });
-          console.log(mermaidMarkdown(p));
+          model.add(p, 'xis some name that is here');
+          // console.log(mermaidMarkdown(p));
         }
-        break;
+        break;  
       }
       default: {
         console.log(ts.SyntaxKind[cn.kind], 'ignored');
@@ -69,5 +70,7 @@ export async function showTsCommand({
       }
     }
   }
-  console.log(mermaidMarkdown(rootPack));
+  // console.log(mermaidMarkdown(rootPack));
+  console.log(model.mermaidMarkdown())
+  // console.log(JSON.stringify(model, undefined, 2));
 }
