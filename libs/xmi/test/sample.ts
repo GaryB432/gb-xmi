@@ -42,4 +42,18 @@ export namespace FunOne {
     color: string;
     weight: () => number;
   }
+  export namespace AdditionalFun {
+    export class Banana implements Fruit {
+      color = 'yellow';
+      weight() {
+        return 3;
+      }
+      name = 'Bababa';
+    }
+    export interface Fruit {
+      name: string;
+      color: string;
+      weight: () => number;
+    }
+  }
 }

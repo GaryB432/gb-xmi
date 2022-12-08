@@ -53,7 +53,7 @@ const factory = new StubFactory();
 describe('XmiModel', () => {
   let xmiModel: XmiModel;
   beforeEach(() => {
-    xmiModel = new XmiModel('is it used?');
+    xmiModel = new XmiModel();
     xmiModel.add(factory.createPackage(1), 'P1');
     xmiModel.add(factory.createPackage(1), 'P2');
   });
@@ -62,6 +62,7 @@ describe('XmiModel', () => {
   });
   test('printMermaid', () => {
     expect(xmiModel.mermaidMarkdown().split('\n')).toEqual([
+      '## P1',
       '```mermaid',
       'classDiagram',
       'class Class0 {',
@@ -70,6 +71,7 @@ describe('XmiModel', () => {
       '}',
       '```',
       '',
+      '## P2',
       '```mermaid',
       'classDiagram',
       'class Class0 {',
