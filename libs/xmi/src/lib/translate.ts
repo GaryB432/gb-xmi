@@ -20,6 +20,11 @@ export function initializerToTypeName(node: ts.Expression): string {
     case ts.SyntaxKind.StringLiteral: {
       return 'string';
     }
+    case ts.SyntaxKind.NewExpression: {
+      const nex = node as ts.NewExpression;
+      const id = nex.expression as ts.Identifier;
+      return id.escapedText as string;
+    }
     case ts.SyntaxKind.ObjectLiteralExpression: {
       return 'object';
     }

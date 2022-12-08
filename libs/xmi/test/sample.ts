@@ -20,6 +20,7 @@ export class Cat {
   whiskers = 0;
   private color: string;
   protected parent: Animal;
+  private sleep = new Node();
   meow(duration: number, volume: number): void {
     console.log(this.color, duration * volume);
   }

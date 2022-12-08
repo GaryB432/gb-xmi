@@ -245,3 +245,35 @@ describe('Translate', () => {
     });
   });
 });
+
+describe('', () => {
+  test('propFromElement NewEpression initializer', () => {
+    expect(
+      propFromElement(
+        factory.createPropertyDeclaration(
+          undefined,
+          factory.createIdentifier('position'),
+          undefined,
+          factory.createTypeReferenceNode(
+            factory.createIdentifier('Victor'),
+            undefined
+          ),
+          factory.createNewExpression(
+            factory.createIdentifier('Victor'),
+            undefined,
+            [
+              factory.createNumericLiteral('0'),
+              factory.createNumericLiteral('0'),
+            ]
+          )
+        )
+      )
+    ).toEqual({
+      isReadOnly: false,
+      isStatic: false,
+      multi: false,
+      typeName: 'Victor',
+      visibility: 'public',
+    });
+  });
+});
