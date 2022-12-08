@@ -1,5 +1,5 @@
 import * as ts from 'typescript';
-import {
+import type {
   IClass,
   IOperation,
   IParamter,

@@ -1,1 +1,1 @@
-export type ExpansionKind = "Iterative" | "Parallel" | "Stream";
+export type ExpansionKind = 'Iterative' | 'Parallel' | 'Stream';

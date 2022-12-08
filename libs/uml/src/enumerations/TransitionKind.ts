@@ -1,1 +1,1 @@
-export type TransitionKind = "External" | "Internal" | "Local";
+export type TransitionKind = 'External' | 'Internal' | 'Local';

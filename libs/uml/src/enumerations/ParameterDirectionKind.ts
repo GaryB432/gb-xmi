@@ -1,1 +1,1 @@
-export type ParameterDirectionKind = "In" | "Inout" | "Out" | "Return";
+export type ParameterDirectionKind = 'In' | 'Inout' | 'Out' | 'Return';

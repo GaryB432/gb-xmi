@@ -1,4 +1,4 @@
-import { IPackage, VisibilityKind } from '@gb-xmi/xmi';
+import type { IPackage, VisibilityKind } from '@gb-xmi/xmi';
 
 function getVisibility(k: VisibilityKind): string {
   const PLUS = '+';

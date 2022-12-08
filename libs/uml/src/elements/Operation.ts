@@ -1,5 +1,5 @@
 class BehavioralFeature {
-  tbd: never;
+  public tbd: never;
 }
 
 export class Operation extends BehavioralFeature {

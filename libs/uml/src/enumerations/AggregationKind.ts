@@ -1,1 +1,1 @@
-export type AggregationKind = "Composite" | "None" | "Shared";
+export type AggregationKind = 'Composite' | 'None' | 'Shared';

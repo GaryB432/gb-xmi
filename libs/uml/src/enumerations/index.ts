@@ -5,28 +5,28 @@
 
     Copyright © 1997-2016 Object Management Group, Inc. All Rights Reserved.
 */
-export { AggregationKind } from "./AggregationKind";
+export { AggregationKind } from './AggregationKind';
 
-export { VisibilityKind } from "./VisibilityKind";
+export { VisibilityKind } from './VisibilityKind';
 
-export { ConnectorKind } from "./ConnectorKind";
+export { ConnectorKind } from './ConnectorKind';
 
-export { ExpansionKind } from "./ExpansionKind";
+export { ExpansionKind } from './ExpansionKind';
 
-export { InteractionOperatorKind } from "./InteractionOperatorKind";
+export { InteractionOperatorKind } from './InteractionOperatorKind';
 
-export { MessageKind } from "./MessageKind";
+export { MessageKind } from './MessageKind';
 
-export { CallConcurrencyKind } from "./CallConcurrencyKind";
+export { CallConcurrencyKind } from './CallConcurrencyKind';
 
-export { ObjectNodeOrderingKind } from "./ObjectNodeOrderingKind";
+export { ObjectNodeOrderingKind } from './ObjectNodeOrderingKind';
 
-export { ParameterDirectionKind } from "./ParameterDirectionKind";
+export { ParameterDirectionKind } from './ParameterDirectionKind';
 
-export { ParameterEffectKind } from "./ParameterEffectKind";
+export { ParameterEffectKind } from './ParameterEffectKind';
 
-export { PseudostateKind } from "./PseudostateKind";
+export { PseudostateKind } from './PseudostateKind';
 
-export { TransitionKind } from "./TransitionKind";
+export { TransitionKind } from './TransitionKind';
 
-export { MessageSort } from "./MessageSort";
+export { MessageSort } from './MessageSort';

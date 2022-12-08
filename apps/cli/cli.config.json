@@ -21,7 +21,10 @@
     "show-ts": {
       "description": "Read a TypeScript class",
       "parameters": {
-        "file": { "type": "string", "description": "file containing TypeScript source to process" }
+        "file": {
+          "type": "string",
+          "description": "file containing TypeScript source to process"
+        }
       },
       "options": {
         "outpath": { "type": "string", "description": "Path for output" }

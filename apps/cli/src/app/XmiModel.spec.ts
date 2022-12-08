@@ -1,29 +1,8 @@
-import { IClass, IOperation, IPackage, IProperty } from '@gb-xmi/xmi';
+import type { IClass, IOperation, IPackage, IProperty } from '@gb-xmi/xmi';
 import { XmiModel } from './XmiModel';
-// import { XmiModel, XmiPackage } from './XmiModel';
 
 class StubFactory {
-  createOperation(params: 0): IOperation {
-    return {
-      isQuery: false,
-      isAbstract: false,
-      isReadOnly: false,
-      parameters: {},
-      visibility: 'package',
-      isStatic: false,
-      typeName: 'void',
-    };
-  }
-  createProperty(): IProperty {
-    return {
-      isReadOnly: false,
-      isStatic: false,
-      multi: false,
-      typeName: 'boolean',
-      visibility: 'package',
-    };
-  }
-  createClass(props: number, ops: number): IClass {
+  public createClass(props: number, ops: number): IClass {
     const ownedOperation = {};
     const attribute = {};
     for (let i = 0; i < props; i++) {
@@ -39,12 +18,32 @@ class StubFactory {
       visibility: 'package',
     };
   }
-  createPackage(numClasses: number): IPackage {
+  public createOperation(_params: 0): IOperation {
+    return {
+      isQuery: false,
+      isAbstract: false,
+      isReadOnly: false,
+      parameters: {},
+      visibility: 'package',
+      isStatic: false,
+      typeName: 'void',
+    };
+  }
+  public createPackage(numClasses: number): IPackage {
     const classes = {};
     for (let i = 0; i < numClasses; i++) {
       classes[`Class${i}`] = this.createClass(1, 1);
     }
     return { classes };
+  }
+  public createProperty(): IProperty {
+    return {
+      isReadOnly: false,
+      isStatic: false,
+      multi: false,
+      typeName: 'boolean',
+      visibility: 'package',
+    };
   }
 }
 

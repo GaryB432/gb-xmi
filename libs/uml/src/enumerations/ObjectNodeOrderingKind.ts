@@ -1,1 +1,1 @@
-export type ObjectNodeOrderingKind = "FIFO" | "LIFO" | "Ordered" | "Unordered";
+export type ObjectNodeOrderingKind = 'FIFO' | 'LIFO' | 'Ordered' | 'Unordered';

@@ -1,6 +1,6 @@
 # gb-xmi
 
-##  Installing
+## Installing
 
 > npm install gb-xmi --save
 
@@ -17,7 +17,7 @@ import {
   UmlPackage,
   UmlParameter,
   UmlProperty,
-} from "gb-xmi";
+} from 'gb-xmi';
 
 // do some stuff
 ```

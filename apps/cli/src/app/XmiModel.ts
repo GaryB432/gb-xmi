@@ -1,8 +1,8 @@
-import { IClass, IModel, IPackage } from '@gb-xmi/xmi';
+import type { IClass, IModel, IPackage } from '@gb-xmi/xmi';
 import { mermaidMarkdown } from '@gb-xmi/reporters';
 
 export class XmiPackage implements IPackage {
-  classes: Record<string, IClass> = {};
+  public classes: Record<string, IClass> = {};
   public add(a: IClass, name: string): void {
     this.classes[name] = a;
   }

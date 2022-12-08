@@ -1,1 +1,1 @@
-export type ConnectorKind = "Assembly" | "Delegation";
+export type ConnectorKind = 'Assembly' | 'Delegation';

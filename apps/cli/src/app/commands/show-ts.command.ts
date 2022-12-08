@@ -3,9 +3,9 @@
 
 import { classFromClassElement, classFromInterface } from '@gb-xmi/xmi';
 import * as ts from 'typescript';
-import { GbCompilerHost } from '../shared';
+import { CompilerHost } from '../CompilerHost';
 import { XmiModel, XmiPackage } from '../XmiModel';
-import { CommandArgs } from './show-ts.types';
+import type { CommandArgs } from './show-ts.types';
 
 const model = new XmiModel();
 const rootPack = new XmiPackage();
@@ -59,11 +59,10 @@ export async function showTsCommand({
       noResolve: true,
       target: ts.ScriptTarget.ES5,
     },
-    new GbCompilerHost(content)
+    new CompilerHost(content)
   );
   const ast = program.getSourceFile(file);
 
-  
   for (const cn of ast.getChildAt(0).getChildren()) {
     digestNodeIntoPackage(cn, rootPack);
   }

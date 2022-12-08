@@ -5,16 +5,16 @@
 
     Copyright © 1997-2016 Object Management Group, Inc. All Rights Reserved.
 */
-export { Element } from "./Element";
+export { Element } from './Element';
 
-export { NamedElement } from "./NamedElement";
+export { NamedElement } from './NamedElement';
 
-export { Namespace } from "./Namespace";
+export { Namespace } from './Namespace';
 
-export { StructuralFeature } from "./StructuralFeature";
+export { StructuralFeature } from './StructuralFeature';
 
-export { Classifier } from "./Classifier";
+export { Classifier } from './Classifier';
 
-export { Feature } from "./Feature";
+export { Feature } from './Feature';
 
-export { Operation } from "./Operation";
+export { Operation } from './Operation';

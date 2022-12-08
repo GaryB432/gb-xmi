@@ -16,8 +16,8 @@ export interface IFeature extends INamedElement {
 
 export interface IProperty extends IFeature {
   isReadOnly: boolean;
-  visibility: VisibilityKind;
   multi: boolean;
+  visibility: VisibilityKind;
 }
 
 export interface IParamter extends INamedElement {
@@ -26,8 +26,8 @@ export interface IParamter extends INamedElement {
 }
 
 export interface IOperation extends IFeature {
-  isQuery: boolean;
   isAbstract: boolean;
+  isQuery: boolean;
   isReadOnly: boolean;
   parameters: { [name: string]: IParamter };
   visibility: VisibilityKind;
@@ -35,9 +35,9 @@ export interface IOperation extends IFeature {
 
 export interface IClass {
   annotation?: string[];
-  ownedOperation: { [name: string]: IOperation };
   attribute: { [name: string]: IProperty };
   isAbstract: boolean;
+  ownedOperation: { [name: string]: IOperation };
   visibility: VisibilityKind;
 }
 

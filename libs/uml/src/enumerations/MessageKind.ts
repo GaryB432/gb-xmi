@@ -1,1 +1,1 @@
-export type MessageKind = "Complete" | "Found" | "Lost" | "Unknown";
+export type MessageKind = 'Complete' | 'Found' | 'Lost' | 'Unknown';

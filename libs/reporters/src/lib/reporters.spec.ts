@@ -1,4 +1,4 @@
-import { IPackage } from '@gb-xmi/xmi';
+import type { IPackage } from '@gb-xmi/xmi';
 import { mermaidMarkdown } from './reporters';
 
 const catPackage: IPackage = {

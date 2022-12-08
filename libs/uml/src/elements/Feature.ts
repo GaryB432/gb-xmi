@@ -1,5 +1,5 @@
 class RedefinableElement {
-  tbd: never;
+  public tbd: never;
 }
 
 export abstract class Feature extends RedefinableElement {

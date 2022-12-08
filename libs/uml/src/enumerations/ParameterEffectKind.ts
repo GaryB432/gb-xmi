@@ -1,1 +1,1 @@
-export type ParameterEffectKind = "Create" | "Delete" | "Read" | "Update";
+export type ParameterEffectKind = 'Create' | 'Delete' | 'Read' | 'Update';

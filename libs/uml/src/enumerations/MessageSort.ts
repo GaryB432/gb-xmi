@@ -1,1 +1,7 @@
-export type MessageSort = "Asynch Call" | "Asynch Signal" | "Create Message" | "Delete Message" | "Reply" | "Synch Call";
+export type MessageSort =
+  | 'Asynch Call'
+  | 'Asynch Signal'
+  | 'Create Message'
+  | 'Delete Message'
+  | 'Reply'
+  | 'Synch Call';

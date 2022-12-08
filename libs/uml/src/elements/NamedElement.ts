@@ -1,6 +1,6 @@
-import { VisibilityKind } from "../enumerations";
+import type { VisibilityKind } from '../enumerations';
 
-import { Element } from "./";
+import { Element } from './';
 
 export abstract class NamedElement extends Element {
   public name: string;

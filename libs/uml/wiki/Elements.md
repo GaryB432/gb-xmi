@@ -4,25 +4,25 @@
 
 ### Dependent Elements
 
-+ NamedElement
+- NamedElement
 
 ## Feature
 
 ### Dependent Elements
 
-+ StructuralFeature
+- StructuralFeature
 
 ## NamedElement
 
 ### Dependent Elements
 
-+ Namespace
+- Namespace
 
 ## Namespace
 
 ### Dependent Elements
 
-+ Classifier
+- Classifier
 
 ## Operation
 
