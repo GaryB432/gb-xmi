@@ -98,22 +98,38 @@ export function typeNodeToString(node: ts.TypeNode): string {
 }
 
 export function opFromElement(mem: ts.ClassElement): IOperation {
+  let visibility: VisibilityKind = 'public';
   const member = mem as ts.MethodDeclaration;
   const parameters: Record<string, IParamter> = {};
-  for (const mf of member.parameters) {
-    const pn = mf.name as ts.Identifier;
+  for (const pm of member.parameters) {
+    const pn = pm.name as ts.Identifier;
     parameters[pn.escapedText as string] = {
       direction: 'inout',
       multi: false,
-      typeName: typeNodeToString(mf.type ?? unknownType),
+      typeName: typeNodeToString(pm.type ?? unknownType),
     };
   }
+  if (member.modifiers) {
+    for (const modf of member.modifiers) {
+      switch (modf.kind) {
+        case ts.SyntaxKind.PrivateKeyword: {
+          visibility = 'private';
+          break;
+        }
+        case ts.SyntaxKind.ProtectedKeyword: {
+          visibility = 'package';
+          break;
+        }
+      }
+    }
+  }
+
   const operation: IOperation = {
     isQuery: false,
     isAbstract: false,
     isReadOnly: false,
     parameters,
-    visibility: 'public',
+    visibility,
     isStatic: false,
     typeName: typeNodeToString(member.type ?? unknownType),
   };

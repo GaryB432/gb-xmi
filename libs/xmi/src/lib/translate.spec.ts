@@ -44,7 +44,7 @@ describe('Translate', () => {
     expect(
       opFromElement(
         factory.createMethodDeclaration(
-          undefined,
+          [factory.createModifier(ts.SyntaxKind.PrivateKeyword)],
           undefined,
           factory.createIdentifier('meow'),
           undefined,
@@ -103,7 +103,7 @@ describe('Translate', () => {
         },
       },
       typeName: 'void',
-      visibility: 'public',
+      visibility: 'private',
     });
   });
   test('propFromElement infer string', () => {
@@ -246,7 +246,7 @@ describe('Translate', () => {
   });
 });
 
-describe('', () => {
+describe('propFromElement', () => {
   test('propFromElement NewEpression initializer', () => {
     expect(
       propFromElement(

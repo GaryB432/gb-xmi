@@ -14,6 +14,9 @@ export class Animal implements Breather {
   }
   name: string;
   feet: number;
+  private seek(): number {
+    return 3;
+  }
 }
 
 export class Cat {
