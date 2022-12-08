@@ -5,10 +5,11 @@ import { mermaidMarkdown } from '@gb-xmi/reporters';
 import {
   classFromClassElement,
   classFromInterface,
-  IPackage,
+  // IPackage,
 } from '@gb-xmi/xmi';
 import * as ts from 'typescript';
 import { GbCompilerHost } from '../shared';
+import { XmiModel, XmiPackage } from '../XmiModel';
 import { CommandArgs } from './show-ts.types';
 
 export async function showTsCommand({
@@ -32,9 +33,7 @@ export async function showTsCommand({
   const program = ts.createProgram([file], config, new GbCompilerHost(content));
   const ast = program.getSourceFile(file);
 
-  const rootPack: IPackage = {
-    classes: {},
-  };
+  const rootPack = new XmiPackage('.');
 
   for (const cn of ast.getChildAt(0).getChildren()) {
     switch (cn.kind) {
@@ -53,9 +52,7 @@ export async function showTsCommand({
         const md = cn as ts.ModuleDeclaration;
         if (ts.isIdentifier(md.name)) {
           console.log(`## ${md.name.escapedText}`);
-          const p: IPackage = {
-            classes: {},
-          };
+          const p = new XmiPackage(md.name.escapedText as string);
           md.body.forEachChild((d) => {
             if (ts.isClassDeclaration(d)) {
               p.classes[d.name.escapedText as string] =
